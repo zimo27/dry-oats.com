@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    
+    <meta charset="utf-8">
+    <title>charts</title>
+
+    <script src= '../collector.js'></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  </head>
+
+    <body>
+        
+        <div id="pieChart"></div>
+        <div id="space"></div>
+        <script>
+            
+            window.addEventListener('load', function(event){
+
+                var english = 0;
+                var spanish = 0;
+                var chinese = 0;
+                var japanesse = 0;
+                var french = 0;
+                var other = 0;
+                
+                fetch("https://dry-oats.com/api/static", {
+                    method: 'GET'
+                })
+                .then((resp) => resp.json())
+                .then(function(data) {
+                    staticData = data.static;
+                    length = data.static.length;
+                    
+                    for(var i = 0; i < length; i++){
+                        if((staticData[i].language).substring(0,2) == 'en') english++;
+                        else if((staticData[i].language).substring(0,2) == 'es') spanish++;
+                        else if((staticData[i].language).substring(0,2) == 'zh') chinese++;
+                        else if((staticData[i].language).substring(0,2) == 'ja') japanesse++;
+                        else if((staticData[i].language).substring(0,2) == 'fr') french++;
+                        else other++;
+                    }
+
+                   
+                    zingchart.render({
+                    id: 'pieChart',
+                        data: {
+                            type: 'navpie',
+                            options:{
+                                threshold: "12%",
+                            },
+                            legend: {
+                                header:{
+                                    text: "Language" 
+                                },
+                                draggable: true,
+                                "toggle-action":"remove"
+                            },
+                            plotarea: {
+                                'margin-left': "7%",
+                                adjustLayout: false
+                            },
+                            plot: {
+                                animation: {
+                                    "on-legend-toggle": true,
+                                    effect: 5,
+                                    method: 1,
+                                    sequence: 1,
+                                    speed: 1
+                                }
+                            },
+                            title: {
+                                text: 'Languages',
+                                fontSize: 35,
+                            },
+                            series: [
+                            {
+                                text: "English",
+                                values: [english]
+                            },
+                            {
+                                text: "Spanish",
+                                values: [spanish]
+                            },
+                            {
+                                text: "Chinese",
+                                values: [chinese ]
+                            },
+                            {
+                                text: "Japanesse",
+                                values: [japanesse ]
+                            },
+                            {
+                                text: "French",
+                                values: [french]
+                            },
+                            {
+                                text: "Other",
+                                values: [other]
+                            }
+                            ]
+                        }
+                    });
+
+		zingchart.render ({
+        	 id: 'bar'
+		},
+        	plot: {
+           	border-color: "pink",
+            	border-radius-top-right: 5,
+           	border-radius-top-left: 5,
+            	hoverState: {
+            	backgroundColor: "#909090"
+            	}
+        },
+        series: [{
+            "values": [staticData[0].screen_w, staticData[0].screen_h],
+            },
+            {
+            "values": [staticData[1].screen_w, staticData[1].screen_h],
+            },
+        ]
+        };
+                    //zing.setAttribute('data', JSON.stringify(entries));
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            })
+          </script>
+
+          
+    </body>
+       
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSE 135 HW</title>
+</head>
+
+<body>
+  <h1 style="display:inline;">CSE 135</h1> 
+  <h2 style="display:inline;">(2022 Sp Edition)</h2>
+  <br>
+  <br> 
+  <h2>Bruthurs! Welcome to the kingdom of dry-oats</h2>
+  <br>
+  <img src="https://i.kym-cdn.com/entries/icons/mobile/000/021/947/oats.jpg" alt="bruthers" width="500" height="300">
+  <br> 
+  <br>
+  <br> 
+  <h2>HW1<h2/>
+  <ul>
+    <li>hello.php</li>
+    <li>report.html</li>
+  </ul>
+  <h2>HW2<h2/>
+  <h2>Analytics App<h2/
+</body>
+
+</html>
